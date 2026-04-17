@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom PC Republic | Gaming Hardware & Managed Security</title>
+    <meta name="description" content="Dell Secured-Core Laptops, Zero Trust Security, and Gamer Protection. No complexity. No learning curve. Just plug in and play secure.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-card-hover: #1a1a25;
+            --neon-cyan: #00f0ff;
+            --neon-magenta: #ff00aa;
+            --neon-green: #39ff14;
+            --neon-purple: #bf00ff;
+            --neon-orange: #ff6b00;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --border-subtle: rgba(255,255,255,0.08);
+            --glow-cyan: 0 0 20px rgba(0, 240, 255, 0.5), 0 0 40px rgba(0, 240, 255, 0.2);
+            --glow-magenta: 0 0 20px rgba(255, 0, 170, 0.5), 0 0 40px rgba(255, 0, 170, 0.2);
+            --glow-green: 0 0 20px rgba(57, 255, 20, 0.5), 0 0 40px rgba(57, 255, 20, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Grid with 3D Parallax */
+        .bg-grid {
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+            transition: transform 0.15s ease-out;
+            transform-style: preserve-3d;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 0, 170, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(57, 255, 20, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            transition: transform 0.15s ease-out;
+            transform-style: preserve-3d;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo span {
+            color: var(--text-secondary);
+            -webkit-text-fill-color: var(--text-secondary);
+            font-weight: 400;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-cyan);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-cyan);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            color: var(--bg-dark);
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            box-shadow: var(--glow-cyan);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 50px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--neon-cyan);
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 240, 255, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(0, 240, 255, 0.4); }
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-magenta) 50%, var(--neon-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-green));
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            box-shadow: var(--glow-cyan);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--neon-magenta);
+            color: var(--neon-magenta);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 0, 170, 0.1);
+            box-shadow: var(--glow-magenta);
+            transform: translateY(-3px);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border-subtle);
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--neon-cyan);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* Section Styling */
+        section {
+            position: relative;
+            padding: 6rem 2rem;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--neon-magenta);
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Product Cards with Corner Glow */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        /* Corner glow effect */
+        .product-card::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        .product-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(0, 240, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .product-card:hover::after {
+            opacity: 1;
+        }
+
+        .product-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(255, 0, 170, 0.2));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .product-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .product-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .product-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .product-features li::before {
+            content: '▸';
+            color: var(--neon-green);
+            font-weight: bold;
+        }
+
+        .product-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: var(--neon-cyan);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-btn {
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card-btn:hover {
+            background: var(--neon-cyan);
+            color: var(--bg-dark);
+            box-shadow: var(--glow-cyan);
+        }
+
+        /* Gamer Section Special */
+        #gamer-protection {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(255, 0, 170, 0.05) 50%, var(--bg-dark) 100%);
+        }
+
+        .gamer-highlight {
+            border-color: var(--neon-magenta) !important;
+        }
+
+        .gamer-highlight .product-icon {
+            background: linear-gradient(135deg, rgba(255, 0, 170, 0.3), rgba(191, 0, 255, 0.3));
+        }
+
+        .gamer-highlight .card-btn {
+            border-color: var(--neon-magenta);
+            color: var(--neon-magenta);
+        }
+
+        .gamer-highlight .card-btn:hover {
+            background: var(--neon-magenta);
+            color: var(--bg-dark);
+            box-shadow: var(--glow-magenta);
+        }
+
+        .gamer-highlight::after {
+            background: radial-gradient(circle, rgba(255, 0, 170, 0.15) 0%, transparent 70%);
+        }
+
+        /* Support Tiers */
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .support-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .support-card::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        .support-card:hover::after {
+            opacity: 1;
+        }
+
+        .support-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .support-card.featured {
+            border-color: var(--neon-cyan);
+            transform: scale(1.05);
+            background: linear-gradient(180deg, rgba(0, 240, 255, 0.05) 0%, var(--bg-card) 100%);
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .support-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .tier-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .tier-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--neon-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-price span {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .tier-desc {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .tier-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .tier-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .tier-features li:last-child {
+            border-bottom: none;
+        }
+
+        .check {
+            color: var(--neon-green);
+            font-weight: bold;
+        }
+
+        /* Vendors Section */
+        .vendors {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .vendors h3 {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+        }
+
+        .vendor-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            opacity: 0.7;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .vendor-logos span {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(0, 240, 255, 0.03) 100%);
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            border: none;
+            border-radius: 4px;
+            color: var(--bg-dark);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            box-shadow: var(--glow-cyan);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-card);
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid var(--border-subtle);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            color: var(--neon-cyan);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--neon-cyan);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--neon-cyan);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .stats-bar {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .support-card.featured {
+                transform: none;
+            }
+
+            .support-card.featured:hover {
+                transform: translateY(-5px);
+            }
+
+            .vendor-logos {
+                gap: 1.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="bg-gradient"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">CUSTOM PC REPUBLIC <span>// ZA</span></div>
+        <ul class="nav-links">
+            <li><a href="#hardware">HARDWARE</a></li>
+            <li><a href="#security">SECURITY</a></li>
+            <li><a href="#gamer-protection">GAMER SHIELD</a></li>
+            <li><a href="#support">SUPPORT</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">GET PROTECTED</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">🛡️ ZERO TRUST RETAIL PARTNER</span>
+            <h1>
+                <span class="gradient-text">PLUG IN.</span><br>
+                <span class="gradient-text">PLAY SECURE.</span>
+            </h1>
+            <p>
+                Dell Secured-Core laptops. Managed cybersecurity. Zero complexity. 
+                We handle the tech so you can focus on what matters — gaming, working, living.
+            </p>
+            <div class="hero-buttons">
+                <a href="#hardware" class="btn btn-primary">SHOP HARDWARE</a>
+                <a href="#security" class="btn btn-secondary">VIEW SECURITY</a>
+            </div>
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">CONFIG NEEDED</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">MANAGED SECURITY</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">SOC MONITORED</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hardware Section -->
+    <section id="hardware">
+        <div class="section-header">
+            <span class="section-tag">// DELL PARTNER</span>
+            <h2>SECURED-CORE LAPTOPS</h2>
+            <p>Hardware-level security built in. Firmware protection. Zero setup. Just power on and you're protected.</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-icon">💻</div>
+                <h3>BUSINESS SERIES</h3>
+                <p>Dell Latitude & Vostro with Secured-Core. Perfect for offices and remote workers who need enterprise security without IT overhead.</p>
+                <ul class="product-features">
+                    <li>Hardware Root of Trust</li>
+                    <li>Firmware Attack Protection</li>
+                    <li>Virtualization-Based Security</li>
+                    <li>Windows 11 Pro Pre-Installed</li>
+                </ul>
+                <p class="product-price">FROM R12,999</p>
+                <button class="card-btn">REQUEST QUOTE</button>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">🎮</div>
+                <h3>GAMING SERIES</h3>
+                <p>Dell G-Series and Alienware with our security stack pre-configured. Game hard, stay protected from IP attacks and malware.</p>
+                <ul class="product-features">
+                    <li>RTX 40-Series Graphics</li>
+                    <li>Pre-Configured Security Suite</li>
+                    <li>DNS & IP Protection Active</li>
+                    <li>Optimized for Low Latency</li>
+                </ul>
+                <p class="product-price">FROM R18,999</p>
+                <button class="card-btn">REQUEST QUOTE</button>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">🏠</div>
+                <h3>HOME & FAMILY</h3>
+                <p>Dell Inspiron with family-safe security. Protect everyone from phishing, malware, and unsafe content without being a tech expert.</p>
+                <ul class="product-features">
+                    <li>Content Filtering Included</li>
+                    <li>Anti-Phishing Protection</li>
+                    <li>Simple Parental Controls</li>
+                    <li>Automatic Updates</li>
+                </ul>
+                <p class="product-price">FROM R8,999</p>
+                <button class="card-btn">REQUEST QUOTE</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Products Section -->
+    <section id="security">
+        <div class="section-header">
+            <span class="section-tag">// MANAGED SECURITY</span>
+            <h2>SECURITY PRODUCTS</h2>
+            <p>Enterprise-grade protection. Fully managed. SOC-monitored. No complexity, just peace of mind.</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-icon">🌐</div>
+                <h3>ENTERPRISE ZERO TRUST</h3>
+                <p>Replace your VPN with Zero Trust Network Access. Connect directly to apps without exposing your network. Cloud-native, identity-based security.</p>
+                <ul class="product-features">
+                    <li>No VPN Required</li>
+                    <li>Direct App Access</li>
+                    <li>Identity-Based Security</li>
+                    <li>SOC Monitoring Included</li>
+                </ul>
+                <p class="product-price">FROM R299/mo per user</p>
+                <button class="card-btn">LEARN MORE</button>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">🔒</div>
+                <h3>TEAM PROTECTION</h3>
+                <p>Lightweight Zero Trust for small teams. Easy deployment, no hardware, instant protection for remote and hybrid workers.</p>
+                <ul class="product-features">
+                    <li>5-Minute Setup</li>
+                    <li>Team Management Portal</li>
+                    <li>Threat Protection Built-In</li>
+                    <li>Works on Any Device</li>
+                </ul>
+                <p class="product-price">FROM R149/mo per user</p>
+                <button class="card-btn">LEARN MORE</button>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">📡</div>
+                <h3>MANAGED DETECTION</h3>
+                <p>24/7 security monitoring with real-time threat detection. Our SOC watches your systems so you don't have to.</p>
+                <ul class="product-features">
+                    <li>Real-Time Threat Alerts</li>
+                    <li>Incident Response</li>
+                    <li>Monthly Security Reports</li>
+                    <li>Compliance Support</li>
+                </ul>
+                <p class="product-price">FROM R399/mo</p>
+                <button class="card-btn">LEARN MORE</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gamer Protection Section -->
+    <section id="gamer-protection">
+        <div class="section-header">
+            <span class="section-tag">// GAMER SHIELD</span>
+            <h2>PROTECT YOUR GAMING</h2>
+            <p>Stay safe online. Hide your identity. Block threats before they hit. Game without worry.</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card gamer-highlight">
+                <div class="product-icon">🎯</div>
+                <h3>IDENTITY SHIELD</h3>
+                <p>Your real IP is hidden from everyone. No more DDoS attacks. No more stalking. No more swatting risks. Play anonymously.</p>
+                <ul class="product-features">
+                    <li>Real IP Always Hidden</li>
+                    <li>DDoS Protection</li>
+                    <li>Works with All Games</li>
+                    <li>No Latency Impact</li>
+                </ul>
+                <p class="product-price">INCLUDED WITH SECURITY</p>
+                <button class="card-btn">GET PROTECTED</button>
+            </div>
+            <div class="product-card gamer-highlight">
+                <div class="product-icon">🧬</div>
+                <h3>THREAT GUARDIAN</h3>
+                <p>Blocks malicious downloads, phishing sites, and infected game mods before they touch your system. Automatic protection.</p>
+                <ul class="product-features">
+                    <li>Malware Blocking</li>
+                    <li>Phishing Protection</li>
+                    <li>Safe Download Scanning</li>
+                    <li>Real-Time Threat Intel</li>
+                </ul>
+                <p class="product-price">INCLUDED WITH SECURITY</p>
+                <button class="card-btn">GET PROTECTED</button>
+            </div>
+            <div class="product-card gamer-highlight">
+                <div class="product-icon">⚡</div>
+                <h3>PERFORMANCE MODE</h3>
+                <p>Security shouldn't slow you down. Optimized routing finds the fastest path while keeping you protected. Lower ping, same protection.</p>
+                <ul class="product-features">
+                    <li>Smart Route Selection</li>
+                    <li>Server Proximity Matching</li>
+                    <li>Packet Loss Reduction</li>
+                    <li>24/7 Monitoring</li>
+                </ul>
+                <p class="product-price">FROM R99/mo ADD-ON</p>
+                <button class="card-btn">GET PROTECTED</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support">
+        <div class="section-header">
+            <span class="section-tag">// FIXED-FEE SUPPORT</span>
+            <h2>SUPPORT PACKAGES</h2>
+            <p>No surprise bills. No hourly rates. Pick your tier and get predictable, professional support.</p>
+        </div>
+        <div class="support-grid">
+            <div class="support-card">
+                <h3 class="tier-name">BASIC</h3>
+                <div class="tier-price">R199<span>/mo</span></div>
+                <p class="tier-desc">For individuals and light users</p>
+                <ul class="tier-features">
+                    <li><span class="check">✔</span> Email Support</li>
+                    <li><span class="check">✔</span> 48-Hour Response</li>
+                    <li><span class="check">✔</span> Software Updates</li>
+                    <li><span class="check">✔</span> Basic Troubleshooting</li>
+                    <li><span class="check">✔</span> Knowledge Base Access</li>
+                </ul>
+                <button class="card-btn">SELECT PLAN</button>
+            </div>
+            <div class="support-card featured">
+                <h3 class="tier-name">PROFESSIONAL</h3>
+                <div class="tier-price">R499<span>/mo</span></div>
+                <p class="tier-desc">For gamers and power users</p>
+                <ul class="tier-features">
+                    <li><span class="check">✔</span> Priority Email & Chat</li>
+                    <li><span class="check">✔</span> 12-Hour Response</li>
+                    <li><span class="check">✔</span> Remote Assistance</li>
+                    <li><span class="check">✔</span> Performance Optimization</li>
+                    <li><span class="check">✔</span> Security Audit Monthly</li>
+                </ul>
+                <button class="card-btn">SELECT PLAN</button>
+            </div>
+            <div class="support-card">
+                <h3 class="tier-name">BUSINESS</h3>
+                <div class="tier-price">R1,499<span>/mo</span></div>
+                <p class="tier-desc">For teams and small businesses</p>
+                <ul class="tier-features">
+                    <li><span class="check">✔</span> Phone, Email & Chat</li>
+                    <li><span class="check">✔</span> 4-Hour Response</li>
+                    <li><span class="check">✔</span> On-Site Support (JHB)</li>
+                    <li><span class="check">✔</span> Dedicated Account Rep</li>
+                    <li><span class="check">✔</span> Compliance Reporting</li>
+                </ul>
+                <button class="card-btn">SELECT PLAN</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vendors Section -->
+    <section class="vendors">
+        <h3>TRUSTED VENDOR PARTNERS</h3>
+        <div class="vendor-logos">
+            <span>DELL</span>
+            <span>HP</span>
+            <span>RASPBERRY PI</span>
+            <span>FING</span>
+            <span>NORD</span>
+            <span>BAZZITE</span>
+            <span>SCOOP</span>
+            <span>TP-LINK</span>
+            <span>CUDY</span>
+            <span>ELASTIC</span>
+            <span>NOVIRUSTHANKS</span>
+            <span>NEXTDNS</span>
+            <span>WAZUH</span>
+            <span>CLOUDFLARE</span>
+            <span>MICROSOFT</span>
+            <span>AWS</span>
+            <span>AXXESS</span>
+            <span>OPENWRT</span>
+            <span>WIREGUARD</span>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-header">
+            <span class="section-tag">// GET IN TOUCH</span>
+            <h2>REQUEST A QUOTE</h2>
+            <p>Tell us what you need. Hardware, security, support — we'll put together a package that fits.</p>
+        </div>
+        <div class="contact-container">
+            <form class="contact-form" action="#" method="POST">
+                <div class="form-group">
+                    <label>YOUR NAME</label>
+                    <input type="text" name="name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>EMAIL ADDRESS</label>
+                    <input type="email" name="email" required placeholder="john@example.com">
+                </div>
+                <div class="form-group">
+                    <label>PHONE NUMBER</label>
+                    <input type="tel" name="phone" placeholder="+27 XX XXX XXXX">
+                </div>
+                <div class="form-group">
+                    <label>I'M INTERESTED IN</label>
+                    <select name="interest">
+                        <option value="">Select an option...</option>
+                        <option value="hardware">Dell Hardware</option>
+                        <option value="security">Security Products</option>
+                        <option value="gaming">Gamer Protection</option>
+                        <option value="support">Support Package</option>
+                        <option value="bundle">Complete Bundle</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>TELL US MORE</label>
+                    <textarea name="message" placeholder="What are you looking for? Any specific requirements?"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">SEND REQUEST →</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>CUSTOM PC REPUBLIC</h4>
+                <p style="color: var(--text-secondary); line-height: 1.8;">
+                    South Africa's Zero Trust retail partner. Hardware and security made simple.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>PRODUCTS</h4>
+                <ul>
+                    <li><a href="#hardware">Dell Laptops</a></li>
+                    <li><a href="#security">Security Products</a></li>
+                    <li><a href="#gamer-protection">Gamer Shield</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>SUPPORT</h4>
+                <ul>
+                    <li><a href="#support">Support Plans</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#">Knowledge Base</a></li>
+                    <li><a href="#">System Status</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>CONTACT</h4>
+                <ul>
+                    <li><a href="mailto:info@custompcrepublic.com">info@custompcrepublic.com</a></li>
+                    <li><a href="#">Johannesburg, South Africa</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Custom PC Republic. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" title="Twitter">𝕏</a>
+                <a href="#" title="Discord">💬</a>
+                <a href="#" title="LinkedIn">in</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 3D Parallax Background Effect
+        const bgGrid = document.querySelector('.bg-grid');
+        const bgGradient = document.querySelector('.bg-gradient');
+        
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+            
+            // Parallax movement for grid
+            bgGrid.style.transform = `
+                perspective(1000px)
+                rotateY(${x * 2}deg)
+                rotateX(${-y * 2}deg)
+                translateX(${x * 20}px)
+                translateY(${y * 20}px)
+            `;
+            
+            // Slower parallax for gradient
+            bgGradient.style.transform = `
+                perspective(1000px)
+                rotateY(${x * 1}deg)
+                rotateX(${-y * 1}deg)
+                translateX(${x * 10}px)
+                translateY(${y * 10}px)
+            `;
+        });
+
+        // Corner Glow Effect on Cards
+        const cards = document.querySelectorAll('.product-card, .support-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Update CSS custom properties for glow position
+                card.style.setProperty('--glow-x', `${x}px`);
+                card.style.setProperty('--glow-y', `${y}px`);
+                
+                // Update the ::after pseudo-element position
+                const afterElement = card.querySelector('.glow-effect') || createGlowElement(card);
+                afterElement.style.left = `${x}px`;
+                afterElement.style.top = `${y}px`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const glowElement = card.querySelector('.glow-effect');
+                if (glowElement) {
+                    glowElement.style.opacity = '0';
+                }
+            });
+            
+            card.addEventListener('mouseenter', () => {
+                const glowElement = card.querySelector('.glow-effect');
+                if (glowElement) {
+                    glowElement.style.opacity = '1';
+                }
+            });
+        });
+        
+        function createGlowElement(card) {
+            const glow = document.createElement('div');
+            glow.className = 'glow-effect';
+            glow.style.cssText = `
+                position: absolute;
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                background: radial-gradient(circle, ${card.classList.contains('gamer-highlight') ? 'rgba(255, 0, 170, 0.2)' : 'rgba(0, 240, 255, 0.15)'} 0%, ${card.classList.contains('gamer-highlight') ? 'rgba(191, 0, 255, 0.1)' : 'rgba(191, 0, 255, 0.08)'} 40%, transparent 70%);
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                transform: translate(-50%, -50%);
+                z-index: 0;
+            `;
+            card.style.position = 'relative';
+            card.insertBefore(glow, card.firstChild);
+            return glow;
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thanks for your interest! We\'ll be in touch within 24 hours.');
+            this.reset();
+        });
+
+        // Add animation class on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card, .support-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

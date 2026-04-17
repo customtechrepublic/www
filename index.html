@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom PC Republic | Portal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800&family=Space+Grotesk:wght@500;700&display=swap');
+
+  :root {
+    --neon-cyan: #00f3ff;
+    --neon-pink: #ff00ea;
+    --neon-purple: #b026ff;
+    --neon-orange: #ff7b00;
+    --dark-bg: #030305;
+    --glass-bg: rgba(10, 10, 15, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.08);
+  }
+
+  * { box-sizing: border-box; }
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    background-color: var(--dark-bg);
+    color: #e0e0e0;
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Grid lines background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-image: 
+      linear-gradient(var(--glass-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -2;
+    transform: perspective(600px) rotateX(60deg) scale(2.5);
+    transform-origin: top;
+    animation: grid-move 25s linear infinite;
+    opacity: 0.25;
+  }
+
+  @keyframes grid-move {
+    0% { transform: perspective(600px) rotateX(60deg) scale(2.5) translateY(0); }
+    100% { transform: perspective(600px) rotateX(60deg) scale(2.5) translateY(-40px); }
+  }
+
+  /* Dynamic Glow Effects */
+  .glow-container {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    animation: float-orb 12s ease-in-out infinite alternate;
+  }
+
+  .orb-1 {
+    width: 45vw; height: 45vw;
+    background: var(--neon-cyan);
+    top: -15%; left: -10%;
+  }
+
+  .orb-2 {
+    width: 55vw; height: 55vw;
+    background: var(--neon-pink);
+    bottom: -25%; right: -15%;
+    animation-direction: alternate-reverse;
+    animation-duration: 15s;
+  }
+  
+  .orb-3 {
+    width: 25vw; height: 25vw;
+    background: var(--neon-purple);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.3;
+    /* Smooth transition for the tracking effect */
+    transition: top 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), left 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes float-orb {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 50px) scale(1.1); }
+  }
+
+  /* Main Content */
+  .portal-wrap {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8vh 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .brand-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--neon-cyan);
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+  }
+  .brand-logo::after {
+    content: '';
+    position: absolute;
+    bottom: -12px; left: 50%; transform: translateX(-50%);
+    width: 40px; height: 2px;
+    background: var(--neon-cyan);
+    box-shadow: 0 0 15px var(--neon-cyan);
+  }
+
+  h1 {
+    text-align: center;
+    font-weight: 800;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: 1.1;
+    margin: 0 0 1.5rem;
+    color: #fff;
+    text-shadow: 0 0 30px rgba(255,255,255,0.15);
+    letter-spacing: -1px;
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink), var(--neon-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 6s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  p.subtitle {
+    text-align: center;
+    color: #a1a1aa;
+    font-size: 1.15rem;
+    max-width: 650px;
+    margin-bottom: 5rem;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* Cards Grid */
+  .nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+    perspective: 1200px;
+  }
+
+  /* Kinetic 3D Cards */
+  .nav-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease-out, border-color 0.4s ease, box-shadow 0.4s ease;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .nav-card:nth-child(1) { animation-delay: 0.1s; }
+  .nav-card:nth-child(2) { animation-delay: 0.2s; }
+  .nav-card:nth-child(3) { animation-delay: 0.3s; }
+  .nav-card:nth-child(4) { animation-delay: 0.4s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Card inner border gradient */
+  .nav-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .card-icon {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    transform: translateZ(50px);
+    display: inline-block;
+    color: var(--neon-cyan);
+    transition: transform 0.4s ease, color 0.4s ease;
+  }
+
+  .nav-card h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    margin: 0 0 0.75rem;
+    font-size: 1.7rem;
+    transform: translateZ(40px);
+    transition: transform 0.4s ease;
+  }
+
+  .nav-card p {
+    margin: 0;
+    font-size: 1rem;
+    color: #9ca3af;
+    line-height: 1.6;
+    transform: translateZ(30px);
+    transition: transform 0.4s ease;
+  }
+  
+  .card-arrow {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    opacity: 0;
+    transform: translateX(-15px) translateZ(40px);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: inherit;
+  }
+
+  /* Hover States for Cards */
+  .nav-card[data-color="cyan"]:hover {
+    border-color: rgba(0, 243, 255, 0.5);
+    box-shadow: 0 20px 50px -15px rgba(0, 243, 255, 0.3);
+  }
+  .nav-card[data-color="cyan"]:hover .card-icon { color: #00f3ff; text-shadow: 0 0 20px rgba(0,243,255,0.6); }
+
+  .nav-card[data-color="purple"]:hover {
+    border-color: rgba(176, 38, 255, 0.5);
+    box-shadow: 0 20px 50px -15px rgba(176, 38, 255, 0.3);
+  }
+  .nav-card[data-color="purple"]:hover .card-icon { color: #b026ff; text-shadow: 0 0 20px rgba(176,38,255,0.6); }
+
+  .nav-card[data-color="pink"]:hover {
+    border-color: rgba(255, 0, 234, 0.5);
+    box-shadow: 0 20px 50px -15px rgba(255, 0, 234, 0.3);
+  }
+  .nav-card[data-color="pink"]:hover .card-icon { color: #ff00ea; text-shadow: 0 0 20px rgba(255,0,234,0.6); }
+
+  .nav-card[data-color="orange"]:hover {
+    border-color: rgba(255, 123, 0, 0.5);
+    box-shadow: 0 20px 50px -15px rgba(255, 123, 0, 0.3);
+  }
+  .nav-card[data-color="orange"]:hover .card-icon { color: #ff7b00; text-shadow: 0 0 20px rgba(255,123,0,0.6); }
+
+  .nav-card:hover .card-arrow {
+    opacity: 1;
+    transform: translateX(0) translateZ(40px);
+    color: currentColor; /* Matches the color adjusted by JS or CSS */
+  }
+
+  .nav-card[data-color="cyan"]:hover .card-arrow { color: #00f3ff; }
+  .nav-card[data-color="purple"]:hover .card-arrow { color: #b026ff; }
+  .nav-card[data-color="pink"]:hover .card-arrow { color: #ff00ea; }
+  .nav-card[data-color="orange"]:hover .card-arrow { color: #ff7b00; }
+
+  /* Particle Canvas */
+  #particles {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Background Ambience -->
+  <div class="glow-container">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3" id="cursor-orb"></div>
+  </div>
+  <canvas id="particles"></canvas>
+
+  <main class="portal-wrap">
+    <div class="brand-logo">System Online</div>
+    <h1>Welcome to <br><span>Custom PC Republic</span></h1>
+    <p class="subtitle">Access the hub. Explore our primary website, browse the gear shop, review past builds, or read our latest transmission logs.</p>
+
+    <div class="nav-grid">
+      <a href="/website" class="nav-card" data-color="cyan">
+        <div class="card-icon">01.</div>
+        <h2>Main Website</h2>
+        <p>Book IT repairs, explore our business services, and discover what we offer.</p>
+        <svg class="card-arrow" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <a href="/shop" class="nav-card" data-color="purple">
+        <div class="card-icon">02.</div>
+        <h2>The Shop</h2>
+        <p>Pre-built rigs, custom components, high-end gear, and digital tools.</p>
+        <svg class="card-arrow" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <a href="/portfolio" class="nav-card" data-color="pink">
+        <div class="card-icon">03.</div>
+        <h2>Portfolio</h2>
+        <p>A visual database of our highest-tier custom builds and modded enclosures.</p>
+        <svg class="card-arrow" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <a href="/blog" class="nav-card" data-color="orange">
+        <div class="card-icon">04.</div>
+        <h2>Transmission Blog</h2>
+        <p>Repair guides, tech insights, node stats, and our company announcements.</p>
+        <svg class="card-arrow" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </main>
+
+  <script>
+    // 1. Kinetic 3D Tilt Effect on Cards
+    const cards = document.querySelectorAll('.nav-card');
+    
+    cards.forEach(card => {
+      // Add a shine layer to each card
+      const shine = document.createElement('div');
+      shine.style.position = 'absolute';
+      shine.style.inset = '0';
+      shine.style.borderRadius = 'inherit';
+      shine.style.pointerEvents = 'none';
+      shine.style.background = 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 0%, transparent 60%)';
+      shine.style.opacity = '0';
+      shine.style.transition = 'opacity 0.3s ease';
+      card.appendChild(shine);
+
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left; 
+        const y = e.clientY - rect.top;  
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        // Calculate rotation based on cursor pos
+        const rotateX = ((y - centerY) / centerY) * -12; // Max rotation 12deg
+        const rotateY = ((x - centerX) / centerX) * 12;
+        
+        card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+        
+        // Update shine position
+        shine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.1) 0%, transparent 60%)`;
+        shine.style.opacity = '1';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        shine.style.opacity = '0';
+      });
+    });
+
+    // 2. Cursor Glow Orb Tracking
+    const cursorOrb = document.getElementById('cursor-orb');
+    let trackerRunning = false;
+
+    // Use a slight mousemove delay effect to update the tracker orb
+    document.addEventListener('mousemove', (e) => {
+      if(!trackerRunning) {
+        requestAnimationFrame(() => {
+          cursorOrb.style.left = `${e.clientX}px`;
+          cursorOrb.style.top = `${e.clientY}px`;
+          trackerRunning = false;
+        });
+        trackerRunning = true;
+      }
+    });
+
+    // 3. Ambient Particle Physics
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    
+    let width, height, particles;
+    
+    function initCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      particles = [];
+      
+      const particleCount = window.innerWidth < 768 ? 20 : 50; // Performance scaling
+      
+      for(let i=0; i<particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          size: Math.random() * 2 + 0.5,
+          alpha: Math.random() * 0.4 + 0.1
+        });
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+      
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        
+        // Wrap around seamlessly
+        if(p.x < -10) p.x = width + 10;
+        if(p.x > width + 10) p.x = -10;
+        if(p.y < -10) p.y = height + 10;
+        if(p.y > height + 10) p.y = -10;
+        
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(160, 200, 255, ${p.alpha})`;
+        ctx.fill();
+      });
+      
+      requestAnimationFrame(animateParticles);
+    }
+
+    window.addEventListener('resize', () => {
+      initCanvas();
+    });
+    
+    initCanvas();
+    animateParticles();
+  </script>
+</body>
+</html>
